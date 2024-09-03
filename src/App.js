@@ -7,6 +7,7 @@ import Dashboard from "./scenes/dashboard/index.jsx";
 import Team from "./scenes/Team/index.jsx";
 import Contacts from "./scenes/contacts/index.jsx";
 import { useState } from "react";
+import Invoice from "./scenes/Invoice/index.jsx";
 function App() {
  const [theme,colorMode] =useMode() 
   const [isActive,setIsActive] = useState(false)
@@ -22,6 +23,7 @@ function App() {
       <Route element={<Dashboard/>} path="/"/>
       <Route element={<Team/>} path="/team"/>
       <Route element={<Contacts/>} path="/contacts"/>
+      <Route element={<Invoice/>} path="/invoices"/>
     </Routes>
     </main>
    </div>
