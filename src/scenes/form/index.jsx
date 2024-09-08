@@ -1,4 +1,4 @@
-import { Box,TextField,Button} from "@mui/material" 
+import { Box,TextField,Button, Input} from "@mui/material" 
 import { Formik } from "formik"
 import Header from "../../components/Header"
 import * as yup from 'yup'
@@ -27,23 +27,106 @@ const Form = () => {
      console.log(values)
     }
   return (
-    <Box>
+    <Box m={"20px"}>
         <Header title="CREATE USER" subtitle="Create a New User Profile" />
     <Formik initialValues={initialValues} validationSchema={formValidationSchema} onSubmit={handleSubmit}>
        {({
         values,
         handleSubmit,
         handleChange,
+        handleBlur,
         errors,
         touched
-       })=>{
-//   <form onSubmit={}>
-//         <Box display={"grid"} gap={"30px"} gridTemplateColumns={'repeat(4,minmax(0,1fr))'}>
+       })=>(
+  <form onSubmit={handleSubmit}>
+        <Box display={"grid"} gap={"30px"} gridTemplateColumns={'repeat(4,minmax(0,1fr))'}>
+          <TextField
+          onBlur={handleBlur}
+          fullWidth
+          onChange={handleChange}
+          value={values.firstName}
+          label="First Name"
+          type="text"
+          name="firstName"
+          variant="filled"
+          error={!!touched.firstName && !!errors.firstName}
+          helperText={touched.firstName && errors.firstName}
+          sx={{gridColumn:'span 2'}}
+          />
+              <TextField
+          onBlur={handleBlur}
+          fullWidth
+          onChange={handleChange}
+          value={values.lastName}
+          label="Last Name"
+          type="text"
+          name="lastName"
+          variant="filled"
+          error={!!touched.lastName && !!errors.lastName}
+          helperText={touched.lastName && errors.lastName}
+          sx={{gridColumn:'span 2'}}
+          />
+              <TextField
+          onBlur={handleBlur}
+          fullWidth
+          onChange={handleChange}
+          value={values.email}
+          label="Email"
+          type="text"
+          name="email"
+          variant="filled"
+          error={!!touched.email && !!errors.email}
+          helperText={touched.email && errors.email}
+          sx={{gridColumn:'span 2'}}
+          />
+              <TextField
+          onBlur={handleBlur}
+          fullWidth
+          onChange={handleChange}
+          value={values.contact}
+          label="Contact"
+          type="text"
+          name="contact"
+          variant="filled"
+          error={!!touched.contact && !!errors.contact}
+          helperText={touched.contact && errors.contact}
+          sx={{gridColumn:'span 2'}}
+          />
+              <TextField
+          onBlur={handleBlur}
+          fullWidth
+          onChange={handleChange}
+          value={values.address1}
+          label="Address 1"
+          type="text"
+          name="address1"
+          variant="filled"
+          error={!!touched.address1 && !!errors.address1}
+          helperText={touched.address1 && errors.address1}
+          sx={{gridColumn:'span 4'}}
+          />
+              <TextField
+          onBlur={handleBlur}
+          fullWidth
+          onChange={handleChange}
+          value={values.address2}
+          label="Address"
+          type="text"
+          name="address"
+          variant="filled"
+          error={!!touched.address2 && !!errors.address2}
+          helperText={touched.address2 && errors.address2}
+          sx={{gridColumn:'span 4'}}
+          />
 
-//         </Box>
-//         </form>
-console.log(param)
-       }}
+        </Box>
+           <Box display="flex" justifyContent="end" mt="20px">
+              <Button type="submit" color="secondary" variant="contained">
+                Create New User
+              </Button>
+            </Box>
+        </form>
+       )}
       
 
     </Formik>
