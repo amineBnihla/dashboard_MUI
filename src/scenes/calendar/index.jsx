@@ -1,22 +1,34 @@
 import { useState } from "react";
-import { Box,List,ListItem,Typography,useTheme } from "@mui/material";
-import FullCalendar,{formatDate} from '@fullcalendar/react'
+import { Box,List,ListItem,ListItemText,Typography,useTheme } from "@mui/material";
+import FullCalendar from '@fullcalendar/react'
+ import {formatDate} from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from "@fullcalendar/interaction"
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
+import listPlugin from '@fullcalendar/list';
 
 
 const Calendar = ()=>{
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
     const [currentDate,setCurrentDate] = useState([])
-    function handleDateSelect(selectInfo){
+    function handleDateSelect(selected){
         let title = prompt('Please enter your title for your event')
 
-        console.log(selectInfo)
-        // let calendarApi =  selectInfo.view.calendar
+        console.log(selected)
+         let calendarApi = selected.view.calendar
+          calendarApi.unselect()
+         if(title){
+          calendarApi.addEvent({
+            id:`${selected.datestr}-${title}`,
+            title,
+               start: selected.startStr,
+        end: selected.endStr,
+        allDay: selected.allDay
+          })
+         }
     }
       function handleEventClick(clickInfo) {
     if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
@@ -28,21 +40,57 @@ const Calendar = ()=>{
    setCurrentDate(event)
   }
     return(
-        <Box m={"20px"}>
+        <Box p={"20px"} sx={{overflowY:'auto'}}>
           <Header title="Calendar" subtitle="Full Calendar Interactive Page" />
-          <Box display={'flex'} justifyContent={'space-between'}>
-           <Box flex={'1 1 20%'} >
+          <Box display={'flex'} gap={'20px'} justifyContent={'space-between'}>
+           <Box flex={'1 1 20%'} backgroundColor={colors.primary[400]} p={'10px'} borderRadius={'5px'} >
+            <Typography variant="h5">
+              Events
+            </Typography>
             <List>
-                <ListItem />
+              {
+                currentDate.map((ev)=>(
+                  <ListItem
+                  key={ev.id}
+                  sx={{
+                    backgroundColor:colors.greenAccent[500],
+                    margin:"10px 0",
+                    borderRadius:"2px"
+                  }}
+                  >
+                 <ListItemText
+                 primary={ev.title}
+                 secondary={
+                  <Typography>
+                    {formatDate(ev.start, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                  </Typography>
+                  }
+                 />
+
+                  </ListItem>
+
+                ))
+              }
             </List>
            </Box>
-             <Box flex={'1 1 80%'}>
+             <Box flex={'1 1 80%'} sx={{
+              '& .fc-scroller.fc-scroller-liquid-absolute .fc-daygrid-body.fc-daygrid-body-balanced ':{
+                width:'100% !important'
+              },
+              '& .fc .fc-scrollgrid-section, .fc .fc-scrollgrid-section table, .fc .fc-scrollgrid-section > td':{
+                width:'100% !important'
+              }
+             }}>
                  <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin,listPlugin]}
           headerToolbar={{
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
           }}
           initialView='dayGridMonth'
           editable={true}

@@ -21,14 +21,15 @@ return (
   <MenuItem
   active={selected === title}
   onClick={()=>setSelected(title)}
+  style={{color:colors.grey[100]}}
   
   >
   {/* <Box display={'flex'} gap={1}>
   </Box>
   <Icon /> */}
-  <Link to={to} style={{color:colors.grey[100],textDecoration:'none',display:'flex',height:'100%',width:'100%',alignItems:'center',gap:"5px"}}>
+  <Link to={to} style={{textDecoration:'none',display:'flex',height:'100%',width:'100%',alignItems:'center',gap:"5px"}}>
   {icon}
-   <Typography  >{title}</Typography>
+   <Typography sx={{color:colors.grey[100]}} >{title}</Typography>
   </Link>
  </MenuItem>
 )
@@ -88,7 +89,7 @@ const SidebarCom = ({isActive,setIsActive}) => {
     <Box mt={2}>
   <Item
      title="Dashboard"
-     icon={<HomeOutlinedIcon sx={{minWidth:'30px'}} />}
+     icon={<HomeOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}} />}
           selected={selected}
               setSelected={setSelected}
               to={'/'}
@@ -103,21 +104,21 @@ const SidebarCom = ({isActive,setIsActive}) => {
             <Item
               title="Manage Team"
               to="/team"
-              icon={<PeopleOutlinedIcon sx={{minWidth:'30px'}} />}
+              icon={<PeopleOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}} />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Contacts Information"
               to="/contacts"
-              icon={<ContactsOutlinedIcon sx={{minWidth:'30px'}} />}
+              icon={<ContactsOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}} />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Invoices Balances"
               to="/invoices"
-              icon={<ReceiptOutlinedIcon sx={{minWidth:'30px'}} />}
+              icon={<ReceiptOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}} />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -132,21 +133,21 @@ const SidebarCom = ({isActive,setIsActive}) => {
             <Item
               title="Profile Form"
               to="/form"
-              icon={<PersonOutlinedIcon sx={{minWidth:'30px'}}/>}
+              icon={<PersonOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}}/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Calendar"
               to="/calendar"
-              icon={<CalendarTodayOutlinedIcon sx={{minWidth:'30px'}}/>}
+              icon={<CalendarTodayOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}}/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="FAQ Page"
               to="/faq"
-              icon={<HelpOutlineOutlinedIcon sx={{minWidth:'30px'}}/>}
+              icon={<HelpOutlineOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}}/>}
               selected={selected}
               setSelected={setSelected}
             />
@@ -161,28 +162,28 @@ const SidebarCom = ({isActive,setIsActive}) => {
             <Item
               title="Bar Chart"
               to="/bar"
-              icon={<BarChartOutlinedIcon sx={{minWidth:'30px'}}/>}
+              icon={<BarChartOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}}/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pie Chart"
               to="/pie"
-              icon={<PieChartOutlineOutlinedIcon sx={{minWidth:'30px'}}/>}
+              icon={<PieChartOutlineOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}}/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Line Chart"
               to="/line"
-              icon={<TimelineOutlinedIcon sx={{minWidth:'30px'}}/>}
+              icon={<TimelineOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}}/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Geography Chart"
               to="/geography"
-              icon={<MapOutlinedIcon sx={{minWidth:'30px'}}/>}
+              icon={<MapOutlinedIcon sx={{minWidth:'30px',color:colors.grey[100]}}/>}
               selected={selected}
               setSelected={setSelected}
             />
