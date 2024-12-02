@@ -10,6 +10,11 @@ import { useState } from "react";
 import Invoice from "./scenes/Invoice/index.jsx";
 import Calendar from "./scenes/calendar/index.jsx";
 import Form from "./scenes/form/index.jsx";
+import Faq from "./scenes/faq/index.jsx";
+import Bar from "./scenes/bar/index.jsx";
+import Pie from "./scenes/pie/index.jsx";
+import Line from "./scenes/line/index.jsx";
+import Geo from "./scenes/geo/index.jsx";
 function App() {
  const [theme,colorMode] =useMode() 
   const [isActive,setIsActive] = useState(false)
@@ -21,6 +26,8 @@ function App() {
     <Sidebar isActive={isActive} setIsActive={setIsActive} />
     <main className={"content "+(isActive ? 'active':'')}>
     <Topbar/>
+    <Box sx={{overflowX:'hidden',overflowY:'auto'}}>
+
     <Routes >
       <Route element={<Dashboard/>} path="/"/>
       <Route element={<Team/>} path="/team"/>
@@ -28,7 +35,13 @@ function App() {
       <Route element={<Invoice/>} path="/invoices"/>
       <Route element={<Form/>} path="/form"/>
       <Route element={<Calendar/>} path="/calendar"/>
+      <Route element={<Faq/>} path="/faq"/>
+      <Route element={<Bar/>} path="/bar"/>
+      <Route element={<Pie/>} path="/pie"/>
+      <Route element={<Line/>} path="/line"/>
+      <Route element={<Geo/>} path="/geography"/>
     </Routes>
+    </Box>
     </main>
    </div>
   </ThemeProvider>

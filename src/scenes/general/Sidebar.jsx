@@ -16,13 +16,19 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 const Item = ({title,icon,to,selected,setSelected})=>{
+  const theme = useTheme()
+  const colors = tokens(theme.palette.mode)
 return (
-  
+  <Box sx={{
+     '& li > .ps-menu-button:hover':
+    {backgroundColor:colors.primary[400]},
+    }}>
+
   <MenuItem
   active={selected === title}
   onClick={()=>setSelected(title)}
-  style={{color:colors.grey[100]}}
-  
+  // style={{color:colors.grey[100]}}
+
   >
   {/* <Box display={'flex'} gap={1}>
   </Box>
@@ -31,7 +37,19 @@ return (
   {icon}
    <Typography sx={{color:colors.grey[100]}} >{title}</Typography>
   </Link>
+  {/* <MenuItem
+      active={selected === title}
+      style={{
+        color: colors.grey[100],
+      }}
+      onClick={() => setSelected(title)}
+      icon={icon}
+    >
+      <Typography>{title}</Typography>
+      <Link to={to} />
+    </MenuItem> */}
  </MenuItem>
+</Box>
 )
 } 
 const SidebarCom = ({isActive,setIsActive}) => {
@@ -44,25 +62,22 @@ const SidebarCom = ({isActive,setIsActive}) => {
 
   <Sidebar collapsed={isActive}   backgroundColor={colors.primary[400]} rootStyles={{border:"none"}}>
   <Menu 
-   
   menuItemStyles={{
       button: {
         // the active class will be added automatically by react router
         // so we can use it to style the active menu item
-        [`&:hover a`]: {
-         color: "#868dfb !important",
-     
-        },
-        [`&:hover `]: {
-        
-         backgroundColor:colors.primary[500]
-        },
-         [`&.ps-active a`]: {
-          color: "#6870fa !important",
        
-        },
+        // },
+        //  "& .pro-inner-item:hover": {
+        //   color: "#868dfb !important",
+        // },
+        // "& .pro-menu-item.active": {
+        //   color: "#6870fa !important",
+        // },
       },
     }}>
+      <Box sx={{'& .css-1t8x7v1 >.ps-menu-button:hover':{backgroundColor:colors.primary[400]}}}>
+
      <MenuItem  >
      <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
       {!isActive && <Typography variant='h3' color={colors.grey[100]}>Adminis</Typography>}
@@ -72,6 +87,7 @@ const SidebarCom = ({isActive,setIsActive}) => {
      </Box>
      </MenuItem>
     
+      </Box>
     {
          !isActive &&
         <Box display={'flex'} flexDirection={'column'} alignItems={'center'} rowGap={1} mt={2}>
